@@ -34,9 +34,11 @@ db.ref().on('value', (snapshot) => {
                     <p style="font-size: 0.6rem; color: #999; letter-spacing: 2px;">CARICATURAS</p>
                     <h3>${d.Nombre}</h3>
                     <div class="price">$${d.Precio || d.precio}</div>
-                    <p style="font-size: 0.7rem; margin-top: 10px;">
-                        Stock: ${stock} piezas - <span style="color:${color}">${textoStatus}</span>
+                    
+                    <p style="font-size: 0.8rem; margin-top: 10px; font-weight: bold; color:${color}">
+                        ${textoStatus}
                     </p>
+
                     <a href="https://wa.me/525512345678?text=Hola, quiero el gorro ${d.Nombre}" class="btn-pedido">
                         Pedir por WhatsApp
                     </a>
