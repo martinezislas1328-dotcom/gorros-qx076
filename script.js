@@ -183,7 +183,7 @@ function renderizarContenido() {
     iniciarObserver();
 }
 
-// --- MINI SLIDER IDENTIDAD (DINÁMICO POR DURACIÓN DE VIDEO) ---
+// --- MINI SLIDER IDENTIDAD (CON SOPORTE PARA VIDEOS) ---
 const beneficios = [
     { 
         tag: "TU ESTILO", 
