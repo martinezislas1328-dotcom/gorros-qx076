@@ -77,7 +77,7 @@ function irAProducto(nombre) {
     }, 300);
 }
 
-// --- SLIDER PRINCIPAL ---
+// --- SLIDER HERO ---
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const heroTitle = document.getElementById('hero-title');
@@ -98,7 +98,6 @@ function moveSlider() {
 }
 setInterval(moveSlider, 5000);
 
-// --- OBSERVER ---
 const iniciarObserver = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -108,17 +107,13 @@ const iniciarObserver = () => {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 };
 
-function filtrar(sub) {
-    filtroActual = sub;
-    renderizarContenido();
-}
-
 // --- RENDERIZADO (FIREBASE) ---
 function renderizarContenido() {
     if (!cacheProductos) return;
     const contenedor = document.getElementById('contenedor-productos');
     contenedor.innerHTML = "";
 
+    // Llenar menú dinámico de forma segura
     const menuColecciones = document.getElementById('menu-colecciones-dinamico');
     if(menuColecciones) {
         menuColecciones.innerHTML = Object.keys(cacheProductos).map(cat => `
@@ -140,17 +135,11 @@ function renderizarContenido() {
                 const stockActual = d.stock !== undefined ? parseInt(d.stock) : 10;
                 const esDisponible = stockActual > 0;
                 
-                // --- LÓGICA DE PRECIO DE OFERTA ---
                 let htmlPrecio = "";
                 if (d.precioOferta && d.precioOferta.toString().trim() !== "") {
-                    htmlPrecio = `
-                        <span class="old-price-card">MXN $${d.precio}</span>
-                        <span class="current-price" style="color: red;">MXN $${d.precioOferta}</span>
-                    `;
+                    htmlPrecio = `<span class="old-price-card">MXN $${d.precio}</span><span class="current-price" style="color: red;">MXN $${d.precioOferta}</span>`;
                 } else {
-                    htmlPrecio = `
-                        <span class="current-price">MXN $${d.precio}</span>
-                    `;
+                    htmlPrecio = `<span class="current-price">MXN $${d.precio}</span>`;
                 }
                 
                 htmlDeEstaSeccion += `
@@ -162,9 +151,7 @@ function renderizarContenido() {
                         <div class="info">
                             <span class="category-label">${idCat.replace(/_/g, ' ')}</span>
                             <h3>${d.Nombre}</h3>
-                            <div class="price-container">
-                                ${htmlPrecio}
-                            </div>
+                            <div class="price-container">${htmlPrecio}</div>
                             <div class="btn-pedido">${esDisponible ? 'PEDIR POR WHATSAPP' : 'SIN STOCK'}</div>
                         </div>
                     </div>
@@ -183,29 +170,11 @@ function renderizarContenido() {
     iniciarObserver();
 }
 
-// --- MINI SLIDER IDENTIDAD (CON SOPORTE PARA VIDEOS) ---
+// --- SLIDER BENEFICIOS (CON SEGURO CONTRA ERRORES) ---
 const beneficios = [
-    { 
-        tag: "TU ESTILO", 
-        titulo: "Diseños a tu Medida", 
-        desc: "¿No ves a tu personaje favorito? Lo creamos desde cero para ti. El límite es tu imaginación en el quirófano.", 
-        tipo: "image", 
-        src: "personalizado.png" 
-    },
-    { 
-        tag: "ENVÍOS", 
-        titulo: "¡Llegamos a tu Hospital!", 
-        desc: "Envíos directos y 100% seguros a cualquier rincón de México. Tu único trabajo es salvar vidas, nosotros te llevamos el estilo.", 
-        tipo: "video", 
-        src: "video-envios.mp4" 
-    },
-    { 
-        tag: "REGALOS", 
-        titulo: "¡Conoce la Magia QX!", 
-        desc: "El detalle perfecto que inspira a doctores y enfermeros. Increíble para celebrar graduaciones, cumpleaños o simplemente una guardia terminada.", 
-        tipo: "video", 
-        src: "ram.mp4" 
-    }
+    { tag: "TU ESTILO", titulo: "Diseños a tu Medida", desc: "¿No ves a tu personaje favorito? Lo creamos desde cero para ti.", tipo: "image", src: "personalizado.png" },
+    { tag: "ENVÍOS", titulo: "¡Llegamos a tu Hospital!", desc: "Envíos directos y 100% seguros a cualquier rincón de México.", tipo: "video", src: "video-envios.mp4" },
+    { tag: "REGALOS", titulo: "¡Conoce la Magia QX!", desc: "El detalle perfecto que inspira a doctores y enfermeros.", tipo: "video", src: "ram.mp4" }
 ];
 
 let beneIndex = 0;
@@ -219,8 +188,13 @@ function updateIdentidad() {
     const desc = document.getElementById('identidad-desc');
     const dots = document.querySelectorAll('.dot');
     
-    const currentItem = beneficios[beneIndex];
+    // SEGURO DE VIDA: Si falta el HTML, detener la función sin romper el resto de la página.
+    if (!imgEl || !vidEl || !tag || !tit || !desc) {
+        console.warn("Faltan elementos del slider en el HTML.");
+        return; 
+    }
 
+    const currentItem = beneficios[beneIndex];
     clearTimeout(timerIdentidad);
     vidEl.onended = null; 
 
@@ -244,11 +218,7 @@ function updateIdentidad() {
                     timerIdentidad = setTimeout(nextIdentidad, 6000);
                 });
             }
-
-            vidEl.onended = () => {
-                nextIdentidad();
-            };
-
+            vidEl.onended = () => nextIdentidad();
         } else {
             imgEl.src = currentItem.src;
             imgEl.style.opacity = "1";
@@ -263,11 +233,12 @@ function updateIdentidad() {
 function nextIdentidad() { beneIndex = (beneIndex + 1) % beneficios.length; updateIdentidad(); }
 function prevIdentidad() { beneIndex = (beneIndex - 1 + beneficios.length) % beneficios.length; updateIdentidad(); }
 
-updateIdentidad(); 
-
+// --- INICIO ---
 db.ref('Productos').on('value', (snapshot) => {
     cacheProductos = snapshot.val();
     renderizarContenido();
+    // Iniciar el slider de beneficios DESPUÉS de cargar la info para evitar choques
+    updateIdentidad(); 
 });
 
 document.addEventListener('DOMContentLoaded', iniciarObserver);
