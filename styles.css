@@ -153,5 +153,3 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
     .info h3 { font-size: 1.1rem; }
     .btn-pedido { padding: 12px 0; font-size: 0.8rem; }
 }
-    .btn-pedido { padding: 12px 0; font-size: 0.8rem; border-radius: 6px; }
-}
