@@ -1,0 +1,66 @@
+script , desordenados
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDjJGxz3rqwKRY1mQsakSqJPGVfF_rYdp0",
+    authDomain: "gorrosqx.firebaseapp.com",
+    databaseURL: "https://gorrosqx-default-rtdb.firebaseio.com",
+    projectId: "gorrosqx",
+    storageBucket: "gorrosqx.firebasestorage.app",
+    messagingSenderId: "675780481076",
+    appId: "1:675780481076:web:d048283127414361583a61"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Escuchamos la raíz de Productos
+db.ref('Productos').on('value', (snapshot) => {
+    const contenedor = document.getElementById('contenedor-productos');
+    contenedor.innerHTML = ""; 
+    
+    snapshot.forEach((categoriaSnapshot) => {
+        categoriaSnapshot.forEach((productoSnapshot) => {
+            const d = productoSnapshot.val();
+            
+            // 1. Buscamos el nombre (como sea que lo hayas escrito)
+            const nombre = d.Nombre || d.nombre || "Gorro QX076";
+            
+            // 2. BUSCAMOS LA IMAGEN (Revisamos todas las posibilidades)
+            // Esto es lo que estaba fallando
+            const urlFoto = d.imagen || d.Imagen || d.imagenn || "";
+
+            // 3. Lógica de Stock (Sin mostrar números, solo el badge)
+            const stockActual = parseInt(d.stock || d.Stock || 0);
+            const esAgotado = stockActual <= 0;
+            const colorStatus = esAgotado ? "#850E35" : "#EE6983"; 
+            const textoStatus = esAgotado ? "AGOTADO" : "DISPONIBLE";
+
+            contenedor.innerHTML += `
+                <div class="card" style="opacity: ${esAgotado ? '0.8' : '1'}">
+                    <span class="badge" style="background: ${colorStatus}">${textoStatus}</span>
+                    
+                    <div class="img-box">
+                        <img src="${urlFoto}" 
+                             alt="${nombre}" 
+                             onerror="this.src='https://via.placeholder.com/400?text=Error+Link+Imagen'">
+                    </div>
+
+                    <div class="info">
+                        <p style="font-size: 0.6rem; color: #999; letter-spacing: 2px; text-transform: uppercase;">
+                            ${d.Categoria || d.categoria || 'COLECCIÓN'}
+                        </p>
+                        
+                        <h3>${nombre}</h3>
+                        <div class="price">$${d.precio || d.Precio}</div>
+
+                        <a href="https://wa.me/525512345678?text=Hola, me interesa el gorro: ${nombre}" 
+                           class="btn-pedido" target="_blank">
+                            PEDIR POR WHATSAPP
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+    });
+});

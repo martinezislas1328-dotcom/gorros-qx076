@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorros QX076 | Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="promo-banner" id="top-bar">
+        <div class="header-container">
+            <div class="header-nav-links">
+                
+                <a href="catalogo.html" class="nav-logo">
+                    <img src="https://i.postimg.cc/1XjdJtsP/Gemini-Generated-Image-52h3mj52h3mj52h3-(1).png" alt="Logo QX076">
+                </a>
+
+                <div class="dropdown" style="position: relative;">
+                    <a href="#" class="nav-link-main">COLECCIONES <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem; margin-left:5px;"></i></a>
+                    <div class="dropdown-content" id="menu-colecciones-dinamico">
+                        <a href="#">Cargando categorías...</a>
+                    </div>
+                </div>
+
+                <div class="dropdown" style="position: relative;">
+                    <a href="#" class="nav-link-main">CONTACTO <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem; margin-left:5px;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="https://wa.me/525519178328" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://www.instagram.com/gorros_qx076/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-logo-area">
+                <span class="logo-top">GORROS QX076</span>
+            </div>
+
+            <div class="header-icons">
+                <i class="fa-solid fa-magnifying-glass icon-interactivo" onclick="toggleSearch()" title="Buscar"></i>
+                
+                <div class="cart-icon-container" onclick="abrirCarrito()">
+                    <i class="fa-solid fa-cart-shopping icon-interactivo" title="Carrito"></i>
+                    <span id="cart-count" class="cart-count-badge">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="¿Qué diseño buscas?..." onkeyup="ejecutarBusquedaPredictiva()">
+            <div id="predictive-results"></div>
+            <i class="fa-solid fa-xmark" style="color: var(--vino); cursor: pointer; font-size: 1.5rem; margin-top:10px;" onclick="toggleSearch()"></i>
+        </div>
+    </nav>
+
+    <section class="hero-boutique">
+        <div class="slider-container">
+            <img src="ban.png" class="hero-bg slide active" alt="Fondo Beige">
+            <img src="ban2.png" class="hero-bg slide" alt="Fondo Oscuro">
+        </div>
+        <div class="hero-overlay reveal">
+            <h1 id="hero-title">Colección Signature</h1>
+            <p>Diseño exclusivo para los expertos de la salud</p>
+            <a href="#dynamic-filter-bar" class="btn-hero magnetic">EXPLORAR CATÁLOGO</a>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="promo-container-wrapper reveal">
+            <button onclick="prevIdentidad()" class="arrow-btn arrow-left-outer"><i class="fa-solid fa-chevron-left"></i></button>
+            <button onclick="nextIdentidad()" class="arrow-btn arrow-right-outer"><i class="fa-solid fa-chevron-right"></i></button>
+
+            <section class="promo-split" id="identity-box">
+                <div class="promo-image">
+                    <img src="" id="identidad-img" alt="Beneficios">
+                    <video id="identidad-video" muted playsinline></video>
+                </div>
+                <div class="promo-details">
+                    <span class="tag-anuncio content-anim" id="identidad-tag">TU ESTILO</span>
+                    <h2 id="identidad-titulo" class="content-anim">Diseños a tu Medida</h2>
+                    <p id="identidad-desc" class="content-anim">Cargando información...</p>
+                    <div id="identidad-btn-container" class="content-anim" style="margin-top: 15px; margin-bottom: 25px;"></div>
+                    <div class="slider-dots content-anim">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="squad-section reveal">
+            <div class="squad-text-content">
+                <span class="tag-accent">#QX076SQUAD</span>
+                <h2>¡Haz Match con tus Favoritos!</h2>
+                <p>Ya sea con tu pareja, tu mejor amigo o con todo tu equipo de guardia. Armen el combo ideal y lleven la misma sintonía al quirófano.</p>
+                
+                <a href="pagina-match.html" class="btn-squad magnetic">Ver Colección Match <i class="fa-solid fa-heart" style="margin-left: 5px;"></i></a>
+            </div>
+
+            <div class="squad-gallery-duo">
+                <div class="squad-item-duo">
+                    <img src="cars.jpg" alt="Match Parejas">
+                    <div class="item-label">Parejas</div>
+                </div>
+                <div class="squad-item-duo">
+                    <img src="oso.jpg" alt="Match Equipos">
+                    <div class="item-label">Equipos</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="filter-bar-wrapper reveal">
+            <div class="filter-bar" id="dynamic-filter-bar">
+                </div>
+        </div>
+
+        <div class="grid" id="contenedor-productos"></div>
+    </div>
+
+    <div class="modal-overlay" id="producto-modal" onclick="cerrarModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <i class="fa-solid fa-xmark modal-close" onclick="cerrarModalBtn()"></i>
+            
+            <div class="modal-left">
+                <img src="" id="modal-img-main" class="modal-main-img">
+                <div class="modal-thumbnails" id="modal-thumbnails-container">
+                    </div>
+            </div>
+            
+            <div class="modal-right">
+                <div class="modal-tag" id="modal-tag-categoria">GORRO INDIVIDUAL</div>
+                <h2 class="modal-title" id="modal-title">Nombre del Producto</h2>
+                <p class="modal-desc" id="modal-desc">Pieza exclusiva, hecha a mano con mucho amor.</p>
+                
+                <div class="modal-price-box">
+                    <div class="modal-price" id="modal-price">$000 MXN</div>
+                </div>
+                
+                <div id="modal-btn-container">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="cerrarCarrito()">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-header">
+                <h2>Tu Carrito</h2>
+                <i class="fa-solid fa-xmark close-cart" onclick="cerrarCarrito()"></i>
+            </div>
+            <div class="cart-body" id="cart-items-container">
+                </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">$0 MXN</span>
+                </div>
+                <button class="btn-checkout magnetic" onclick="procesarCompraWa()"><i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> PEDIR POR WHATSAPP</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-morado">
+        <div class="footer-logo">Gorros QX076</div>
+        <p>© 2026 GorrosQX076. Hecho con amor en México.</p>
+    </footer>
+
+    <div class="flotantes-container">
+        <a href="https://www.instagram.com/gorros_qx076/" class="btn-flotante instagram-flotante magnetic" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/525519178328" class="btn-flotante whatsapp-flotante magnetic" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

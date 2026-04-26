@@ -1,0 +1,146 @@
+:root { --vino: #850E35; --rosa: #EE6983; --hueso: #FCF5EE; --azul-match: #2980b9; --verde-gallery: #27ae60; --gris-oscuro: #333; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--hueso); padding: 20px; margin: 0; color: var(--gris-oscuro); }
+        .container { max-width: 900px; margin: auto; }
+        .panel { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 30px; border-top: 5px solid var(--vino); }
+        h2 { color: var(--vino); margin: 0 0 20px 0; font-size: 1.5rem; }
+        label { display: block; margin-top: 15px; font-weight: 600; color: #444; font-size: 0.95rem; }
+        input[type="text"], input[type="number"], input[type="password"], select, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; transition: border 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: var(--vino); outline: none; }
+        
+        .btn-guardar { background: var(--vino); color: white; border: none; padding: 15px; cursor: pointer; width: 100%; border-radius: 8px; font-weight: bold; font-size: 1.1rem; transition: 0.3s; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-guardar:hover { background: #6b0b2a; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(133, 14, 53, 0.3); }
+        
+        .btn-upload { background: #34495e; color: white; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; margin: 0; display: flex; align-items: center; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
+        .btn-upload:hover { background: #2c3e50; }
+        .btn-add-foto { background: #f8f9fa; color: #555; border: 1.5px dashed #bbb; padding: 12px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 10px; transition: 0.2s; font-size: 0.95rem; }
+        .btn-add-foto:hover { background: #e9ecef; border-color: #888; }
+        
+        .producto-item { background: white; padding: 15px; margin-bottom: 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid var(--vino); }
+        .info-admin { display: flex; align-items: center; gap: 15px; }
+        .info-admin img { width: 65px; height: 65px; object-fit: cover; border-radius: 8px; border: 1px solid #eee; }
+        .controles { display: flex; gap: 8px; align-items: center;}
+        
+        .btn-edit { background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+        .btn-edit:hover { background: #2980b9; }
+        .btn-del { background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+        .btn-del:hover { background: #c0392b; }
+        
+        .stock-input { width: 70px !important; text-align: center; margin: 0 !important; padding: 8px !important; border-radius: 6px; border: 1px solid #ccc; }
+        .oferta-input { border: 1px solid var(--rosa) !important; background: #fffafd; }
+        
+        .grid-admin-menus { display: flex; flex-wrap: wrap; gap: 20px; }
+        .menu-box { flex: 1; min-width: 280px; background: #fdfdfd; padding: 20px; border-radius: 8px; border: 1px solid #eaeaea; }
+        
+        .status-msg { font-weight: 600; display: none; margin-top: 8px; font-size: 0.9rem; }
+        .ul-pedidos { list-style: none; padding: 0; margin: 0; }
+        .ul-pedidos li { background: white; padding: 8px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;}
+
+  /* =========================================
+   DISEÑO TICKET DE COMPRA (RECIBO)
+   ========================================= */
+.ticket-recibo {
+    background: #fff;
+    width: 100%;
+    max-width: 450px; /* Ancho de ticket */
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+    border-top: 8px solid var(--vino);
+}
+
+/* Efecto de corte de papel abajo */
+.ticket-recibo::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(-45deg, transparent 5px, #fff 5px), 
+                linear-gradient(45deg, transparent 5px, #fff 5px);
+    background-size: 10px 10px;
+}
+
+.ticket-header {
+    text-align: center;
+    border-bottom: 2px dashed #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.ticket-id { font-weight: bold; font-size: 1.2rem; color: #333; display: block; }
+.ticket-fecha { font-size: 0.85rem; color: #888; }
+
+.ticket-cuerpo { margin-bottom: 20px; }
+
+.ticket-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.ticket-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    background: #f0f0f0;
+}
+
+.ticket-item-info { flex: 1; }
+.ticket-item-nombre { font-size: 0.9rem; font-weight: 600; color: #444; display: block; }
+.ticket-item-meta { font-size: 0.85rem; color: #666; }
+
+.ticket-footer {
+    border-top: 2px dashed #eee;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.ticket-total {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.ticket-acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-confirmar {
+    background: var(--verde-gallery);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-confirmar:hover { transform: scale(1.05); background: #219150; }
+
+.btn-basura {
+    background: #fdf0f0;
+    color: #e74c3c;
+    border: 1px solid #fadbd8;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-basura:hover { background: #e74c3c; color: white; }
