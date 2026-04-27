@@ -196,23 +196,80 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
 .squad-item-duo:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(139, 24, 52, 0.15); }
 .squad-item-duo:hover img { transform: scale(1.03); }
 
-/* CELULARES */
+/* =========================================
+   📱 CELULARES (¡Ya arreglado!)
+========================================= */
 @media (max-width: 768px) { 
+    /* 1. HEADER Y MENÚ */
     .header-container { grid-template-columns: 1fr; gap: 10px; padding: 0 15px; }
     .header-logo-area { order: -1;} 
     .header-nav-links { justify-content: center; width: 100%; }
     .header-icons { justify-content: center; width: 100%;}
-    .filter-bar { display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; border-radius: 15px; scrollbar-width: none; padding: 10px; }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .btn-filtro { white-space: nowrap; font-size: 0.85rem; padding: 10px 15px; }
     .submenu { position: absolute; left: 0; transform: none; width: 220px; }
+
+    /* 2. SLIDER / HERO ("El ramo que todo médico desea") */
+    /* Le quitamos los márgenes gigantes para que no se vea comprimido ni hacia la derecha */
+    .promo-container-wrapper { padding: 0 15px; margin: 40px auto; } 
     .promo-split { flex-direction: column; text-align: center; border-radius: 20px;}
     .promo-image { width: 100%; height: 250px; }
-    .promo-details { width: 100%; padding: 30px 20px; align-items: center; text-align: center; }
-    .promo-details h2 { font-size: 2.2rem; }
+    .promo-details { width: 100%; padding: 30px 15px; align-items: center !important; text-align: center !important; }
+    .promo-details h2 { font-size: 1.8rem; margin-bottom: 10px; text-align: center; width: 100%; }
+    .promo-details p { font-size: 1rem; margin-bottom: 20px; text-align: center; }
+
+    /* 3. BARRA DE FILTROS */
+    /* Ajustamos el 'top' para que no brinque feo y aseguramos que tenga fondo sólido */
+    .filter-bar-wrapper { 
+        top: 75px; /* Para que quede justito debajo de tu navbar */
+        padding: 10px 5px;
+        background-color: var(--crema-fondo);
+    } 
+    .filter-bar { 
+        display: flex; 
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        justify-content: flex-start; 
+        border-radius: 15px; 
+        scrollbar-width: none; 
+        padding: 10px;
+        background: white; 
+        -webkit-overflow-scrolling: touch; /* Scroll suavecito en cel */
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .btn-filtro { white-space: nowrap; font-size: 0.85rem; padding: 10px 15px; }
+
+    /* 4. GRID DE PRODUCTOS, IMÁGENES Y GORROS */
     .grid { grid-template-columns: 1fr 1fr; gap: 15px; } 
+
+    /* Solución de las tarjetas (espacio en blanco abajo de los gorros) */
+    .card {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important; /* Forza a la tarjeta a usar todo el alto */
+    }
+    .info {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-grow: 1 !important; /* Hace que esta zona crezca y empuje el botón */
+        justify-content: space-between !important;
+        padding: 15px 10px; 
+    }
+    .info h3 { font-size: 1.1rem; }
+    .price-container { margin-bottom: 15px; }
+    .btn-pedido { margin-top: auto !important; padding: 10px 0; font-size: 0.9rem; } /* El botón siempre se queda hasta abajo */
+
+    /* Solución de las imágenes que no se veían */
+    .img-box { width: 100%; display: block; }
+    .img-box img { 
+        width: 100% !important; 
+        aspect-ratio: 1/1 !important; 
+        object-fit: cover !important; 
+        min-height: 150px !important; /* Fuerza a que no desaparezcan */
+        display: block !important;
+    }
+
+    /* 5. BOTONES FLOTANTES */
+    .flotantes-container { bottom: 15px; right: 15px; gap: 10px; }
     .btn-flotante { width: 50px; height: 50px; font-size: 25px; }
-    .filter-bar-wrapper { top: 90px; } 
 }
 
 /* MODAL VIP Y CARRITO (GLASSMORPHISM) */
