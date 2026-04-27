@@ -195,7 +195,6 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
 .item-label { position: absolute; bottom: 20px; left: 20px; background: rgba(255, 255, 255, 0.95); color: var(--vino); padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(5px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .squad-item-duo:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(139, 24, 52, 0.15); }
 .squad-item-duo:hover img { transform: scale(1.03); }
-
 /* =========================================
    📱 CELULARES (AJUSTES CORREGIDOS Y REDISEÑADOS)
 ========================================= */
@@ -258,30 +257,46 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
         display: block !important;
     }
 
-    /* 3. BARRA DE FILTROS (Deslizable horizontal y sin flotar raro arriba) */
+    /* 3. BARRA DE FILTROS (DISEÑO VERTICAL TIPO MENÚ) */
     .filter-bar-wrapper { 
-        position: static !important; /* Quitamos el sticky en móvil para que no haga espacio blanco */
+        position: static !important;
         top: auto !important; 
         background-color: transparent !important; 
-        padding: 10px 0 !important;
-        margin: 20px auto !important;
+        padding: 0 !important;
+        margin: 15px auto !important;
+        width: 100% !important;
     } 
     .filter-bar { 
         display: flex !important; 
-        flex-wrap: nowrap !important; /* Fuerza una sola línea */
-        overflow-x: auto !important; /* Activa el scroll horizontal con el dedo */
-        overflow-y: hidden !important;
-        justify-content: flex-start !important; 
-        padding: 10px 15px !important;
-        -webkit-overflow-scrolling: touch; 
-        width: 100% !important;
-        box-sizing: border-box !important;
+        flex-direction: column !important; /* ¡FUERZA LISTA VERTICAL! */
+        align-items: center !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(5px);
+        padding: 15px !important;
+        border-radius: 15px !important;
+        width: calc(100% - 30px) !important; /* Aire a los lados */
+        margin: 0 auto !important;
+        box-shadow: 0 5px 20px rgba(133, 14, 53, 0.08) !important;
+        overflow: visible !important; /* No más scroll horizontal */
     }
-    .filter-bar::-webkit-scrollbar { display: none; height: 0; } /* Oculta la rayita del scroll */
+    .filter-bar::-webkit-scrollbar { display: none; } 
     .btn-filtro { 
-        white-space: nowrap !important; /* El texto no se rompe */
-        flex-shrink: 0 !important; /* El botón no se hace chiquito */
-        margin: 0 5px !important;
+        display: block !important;
+        width: 100% !important; /* Botones a todo lo ancho */
+        max-width: 250px; 
+        text-align: center !important;
+        margin: 5px auto !important;
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+        color: var(--vino) !important;
+        border: 1px solid rgba(133, 14, 53, 0.1) !important;
+        background: #fff;
+        white-space: normal !important; /* Deja que el texto baje si es largo */
+    }
+    .btn-filtro.active-filter {
+        background: var(--vino) !important;
+        color: #fff !important;
+        box-shadow: none !important;
     }
 
     /* 4. GORROS Y ESPACIO EN BLANCO HASTA ABAJO */
@@ -301,6 +316,86 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
     }
     .info h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; }
     .btn-pedido { margin-top: auto !important; } /* Esto empuja el botón siempre hasta abajo */
+
+    /* 5. MODAL DE PRODUCTO (REDISEÑO MÓVIL COMPLETO Y FOTOS CHICAS ABAJO) */
+    .modal-content { 
+        flex-direction: column !important; /* Imagen arriba, info abajo */
+        overflow-y: auto !important; /* Permite scroll vertical interno */
+        max-height: 90vh !important; /* Limita la altura al 90% de la pantalla */
+        width: 95% !important; 
+        border-radius: 20px !important;
+    } 
+    .modal-left { 
+        width: 100% !important; 
+        padding: 15px !important; 
+        border-right: none !important; 
+        border-bottom: 1px solid #eaeaea !important;
+        background: #fff !important;
+        overflow-y: visible !important; 
+    } 
+    .modal-main-img { 
+        max-height: 200px !important; /* IMAGEN PRINCIPAL MÁS CHICA */
+        object-fit: contain !important; 
+        margin-bottom: 10px !important;
+        padding: 5px !important;
+    }
+    /* AQUÍ ESTÁ LA MAGIA PARA LAS FOTOS DE ABAJO */
+    .modal-thumbnails { 
+        display: flex !important; 
+        gap: 8px !important; 
+        flex-wrap: nowrap !important; /* Fila horizontal */
+        justify-content: center !important; 
+        width: 100% !important;
+        overflow-x: auto !important; /* Scroll horizontal si hay muchas miniaturas */
+        margin-top: 5px !important;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px; 
+    }
+    .modal-thumb { 
+        width: 50px !important; /* Cuadritos chiquitos */
+        height: 50px !important; 
+        border-radius: 8px !important;
+        flex-shrink: 0; 
+    }
+    .modal-right { 
+        width: 100% !important; 
+        padding: 20px 15px !important; 
+    } 
+    .modal-tag { margin-bottom: 8px !important; padding: 4px 12px !important; font-size: 0.75rem !important;}
+    .modal-title { font-size: 1.6rem !important; margin: 0 0 10px 0 !important; text-align: center; } 
+    .modal-desc { 
+        font-size: 0.9rem !important; 
+        margin-bottom: 15px !important; 
+        line-height: 1.4 !important;
+        border-left: 3px solid var(--rosa-pastel) !important;
+    }
+    .modal-price-box { 
+        padding: 10px 15px !important; 
+        border-radius: 12px !important;
+        margin: 0 auto 20px auto !important; 
+        display: block !important;
+        width: fit-content;
+    }
+    .modal-price { font-size: 1.6rem !important; justify-content: center;} 
+    .modal-price-old { font-size: 1.1rem !important; }
+    .modal-price span { font-size: 0.8rem !important; }
+    .modal-buttons-duo { 
+        flex-direction: row !important; /* Botones juntos de nuevo */
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    .btn-wa-modal, .btn-modal-cart {
+        padding: 12px !important; 
+        font-size: 0.9rem !important;
+        border-radius: 15px !important;
+    }
+    .modal-close { 
+        top: 10px !important; 
+        right: 10px !important; 
+        width: 30px !important; 
+        height: 30px !important; 
+        font-size: 1.1rem !important;
+    } 
 }
 
 /* MODAL VIP Y CARRITO (GLASSMORPHISM) */
@@ -419,7 +514,6 @@ img {
     border-radius: 20px;
     overflow: hidden;
 }
-
 /* Evita que la imagen grande rompa el layout mientras carga */
 .img-modal-optimizada {
     width: 100%;
