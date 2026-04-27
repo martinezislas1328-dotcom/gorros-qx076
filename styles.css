@@ -197,79 +197,90 @@ body { font-family: 'Outfit', sans-serif; margin: 0; background-color: var(--cre
 .squad-item-duo:hover img { transform: scale(1.03); }
 
 /* =========================================
-   📱 CELULARES (¡Ya arreglado!)
+   📱 CELULARES (AJUSTES CORREGIDOS)
 ========================================= */
 @media (max-width: 768px) { 
-    /* 1. HEADER Y MENÚ */
+    /* HEADER (Esto ya estaba bien) */
     .header-container { grid-template-columns: 1fr; gap: 10px; padding: 0 15px; }
     .header-logo-area { order: -1;} 
     .header-nav-links { justify-content: center; width: 100%; }
     .header-icons { justify-content: center; width: 100%;}
     .submenu { position: absolute; left: 0; transform: none; width: 220px; }
-
-    /* 2. SLIDER / HERO ("El ramo que todo médico desea") */
-    /* Le quitamos los márgenes gigantes para que no se vea comprimido ni hacia la derecha */
-    .promo-container-wrapper { padding: 0 15px; margin: 40px auto; } 
-    .promo-split { flex-direction: column; text-align: center; border-radius: 20px;}
-    .promo-image { width: 100%; height: 250px; }
-    .promo-details { width: 100%; padding: 30px 15px; align-items: center !important; text-align: center !important; }
-    .promo-details h2 { font-size: 1.8rem; margin-bottom: 10px; text-align: center; width: 100%; }
-    .promo-details p { font-size: 1rem; margin-bottom: 20px; text-align: center; }
-
-    /* 3. BARRA DE FILTROS */
-    /* Ajustamos el 'top' para que no brinque feo y aseguramos que tenga fondo sólido */
-    .filter-bar-wrapper { 
-        top: 75px; /* Para que quede justito debajo de tu navbar */
-        padding: 10px 5px;
-        background-color: var(--crema-fondo);
-    } 
-    .filter-bar { 
-        display: flex; 
-        flex-wrap: nowrap; 
-        overflow-x: auto; 
-        justify-content: flex-start; 
-        border-radius: 15px; 
-        scrollbar-width: none; 
-        padding: 10px;
-        background: white; 
-        -webkit-overflow-scrolling: touch; /* Scroll suavecito en cel */
-    }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .btn-filtro { white-space: nowrap; font-size: 0.85rem; padding: 10px 15px; }
-
-    /* 4. GRID DE PRODUCTOS, IMÁGENES Y GORROS */
-    .grid { grid-template-columns: 1fr 1fr; gap: 15px; } 
-
-    /* Solución de las tarjetas (espacio en blanco abajo de los gorros) */
-    .card {
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100% !important; /* Forza a la tarjeta a usar todo el alto */
-    }
-    .info {
-        display: flex !important;
-        flex-direction: column !important;
-        flex-grow: 1 !important; /* Hace que esta zona crezca y empuje el botón */
-        justify-content: space-between !important;
-        padding: 15px 10px; 
-    }
-    .info h3 { font-size: 1.1rem; }
-    .price-container { margin-bottom: 15px; }
-    .btn-pedido { margin-top: auto !important; padding: 10px 0; font-size: 0.9rem; } /* El botón siempre se queda hasta abajo */
-
-    /* Solución de las imágenes que no se veían */
-    .img-box { width: 100%; display: block; }
-    .img-box img { 
-        width: 100% !important; 
-        aspect-ratio: 1/1 !important; 
-        object-fit: cover !important; 
-        min-height: 150px !important; /* Fuerza a que no desaparezcan */
-        display: block !important;
-    }
-
-    /* 5. BOTONES FLOTANTES */
     .flotantes-container { bottom: 15px; right: 15px; gap: 10px; }
     .btn-flotante { width: 50px; height: 50px; font-size: 25px; }
+
+    /* 1. SLIDER / HERO - Centrado y sin amontonarse a la derecha */
+    .promo-container-wrapper { padding: 0 15px; margin: 20px auto; } 
+    .promo-split { flex-direction: column !important; border-radius: 20px; } /* Fuerza a ponerse uno sobre otro */
+    .promo-image { width: 100% !important; height: 300px !important; }
+    .promo-details { 
+        width: 100% !important; 
+        padding: 30px 20px !important; 
+        align-items: center !important; 
+        text-align: center !important; 
+        box-sizing: border-box !important; /* Evita que el padding extra lo empuje chueco */
+    }
+    .promo-details h2 { font-size: 2rem !important; text-align: center !important; margin: 0 auto 15px auto !important; }
+    .promo-details p { text-align: center !important; margin: 0 auto 20px auto !important; max-width: 100% !important; }
+    .slider-dots { justify-content: center !important; width: 100% !important; }
+
+    /* 2. SECCIÓN MATCH / TUS FAVORITOS (Para que salgan las 2 fotos) */
+    .squad-section { 
+        flex-direction: column !important; /* El texto arriba y las fotos abajo */
+        padding: 30px 20px !important; 
+        gap: 20px !important;
+        margin: 30px 15px !important;
+    }
+    .squad-text-content { max-width: 100% !important; text-align: center !important; }
+    .squad-text-content h2 { font-size: 2.2rem !important; }
+    .squad-gallery-duo { 
+        width: 100% !important; 
+        height: auto !important; /* Le quitamos el alto fijo que las escondía */
+        flex-direction: column !important; /* Las pone una abajo de la otra para que se vean grandes */
+        display: flex !important;
+        gap: 15px !important;
+    }
+    .squad-item-duo { height: 280px !important; width: 100% !important; }
+
+    /* 3. BARRA DE FILTROS (Estática pero deslizable a los lados) */
+    .filter-bar-wrapper { 
+        position: sticky !important; 
+        top: 70px !important; /* Se ancla justito abajo de tu menú */
+        z-index: 1000 !important; 
+        background-color: var(--crema-fondo) !important; /* Para que no se transparente lo de atrás */
+        padding: 10px 0 !important;
+    } 
+    .filter-bar { 
+        display: flex !important; 
+        flex-wrap: nowrap !important; /* Evita que se bajen de renglón y desaparezcan */
+        overflow-x: auto !important; /* Activa el deslizar a la derecha */
+        justify-content: flex-start !important; 
+        padding: 10px 15px !important;
+        -webkit-overflow-scrolling: touch; 
+    }
+    .filter-bar::-webkit-scrollbar { display: none; } /* Oculta la barra scroll fea */
+    .btn-filtro { 
+        white-space: nowrap !important; /* Evita que el texto de los botones se rompa */
+        flex-shrink: 0 !important; /* Evita que los botones se aplasten como acordeón */
+    }
+
+    /* 4. GORROS Y ESPACIO EN BLANCO HASTA ABAJO */
+    .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; padding: 0 10px !important; } 
+    .card { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        height: 100% !important; 
+        justify-content: space-between !important;
+    }
+    .info { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        flex-grow: 1 !important; /* Esto estira la tarjeta para rellenar el espacio blanco */
+        justify-content: space-between !important;
+        padding: 15px 10px !important;
+    }
+    .info h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; }
+    .btn-pedido { margin-top: auto !important; } /* Esto empuja el botón siempre hasta abajo */
 }
 
 /* MODAL VIP Y CARRITO (GLASSMORPHISM) */
