@@ -658,13 +658,13 @@ function cerrarModalBtn() {
 // --- LÓGICA DEL SLIDER "PERRÍSIMO" ---
 const beneficios = [
     // Nota: El botón de WhatsApp ahora incluye la clase 'magnetic' y el número correcto
-    { tag: "TU ESTILO", titulo: "Diseños 100% a tu medida", desc: "¿De tu artista favorito, para parejas o un logo especial? Cuéntanos tu idea, nosotros le ponemos la magia y creamos un diseño único que vas a amar.", tipo: "image", src: "personalizado.png", boton: `<a href="https://wa.me/525519178328?text=Hola!%20Me%20gustaría%20cotizar%20un%20diseño%20personalizado" target="_blank" class="btn-whatsapp-slider magnetic"><i class="fab fa-whatsapp"></i> ¡Cotiza tu idea aquí!</a>` },
+    { tag: "TU ESTILO", titulo: "Diseños 100% a tu medida", desc: "¿De tu artista favorito, para parejas o un logo especial? Cuéntanos tu idea, nosotros le ponemos la magia y creamos un diseño único que vas a amar.", tipo: "video", src: "personalizado.mp4", boton: `<a href="https://wa.me/525519178328?text=Hola!%20Me%20gustaría%20cotizar%20un%20diseño%20personalizado" target="_blank" class="btn-whatsapp-slider magnetic"><i class="fab fa-whatsapp"></i> ¡Cotiza tu idea aquí!</a>` },
     
-    { tag: "ENVÍOS", titulo: "¡De nuestra tienda a tu hospital!", desc: "Envíos rápidos y seguros a todo México para que nunca te falte estilo en tu turno.", tipo: "video", src: "video-envios.mp4" },
+    { tag: "ENVÍOS", titulo: "¡De nuestra tienda a tu hospital!", desc: "Envíos rápidos y seguros a todo México para que nunca te falte estilo en tu turno.", tipo: "video", src: "envios.mp4" },
     
     { tag: "REGALOS", titulo: "El ramo que todo médico desea", desc: "Regala algo único: combina tus diseños favoritos y crea un detalle inolvidable con la magia de QX076.", tipo: "video", src: "ram.mp4", boton: `<a href="crea-tu-ramo.html" class="magnetic" style="display: inline-block; background: var(--rosa-banner); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1rem; margin-top: 15px; box-shadow: 0 5px 15px rgba(94, 10, 26, 0.93); transition: 0.3s;"> ¡Arma tu ramo aquí!</a>` },
     
-    { tag: "PRÓXIMAMENTE", titulo: "Tu nuevo uniforme favorito", desc: "Los uniformes quirúrgicos a tu medida que estabas pidiendo ya casi están aquí. Prepárate para hacer match con tus gorros.", tipo: "image", src: "ban.png", colorTag: "var(--vino)" }
+    { tag: "PRÓXIMAMENTE", titulo: "Tu nuevo uniforme favorito", desc: "Los uniformes quirúrgicos a tu medida que estabas pidiendo ya casi están aquí. Prepárate para hacer match con tus gorros.", tipo: "video", src: "uni.mp4", colorTag: "var(--vino)" }
 ];
 
 let beneIndex = 0;
