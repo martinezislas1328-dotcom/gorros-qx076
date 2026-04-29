@@ -239,7 +239,7 @@ function procesarCompraWa() {
 }
 
 function comprarDirecto(id, nombre, precio, imagen, tipo, categoria) {
-    const telefono = "525519178328";
+    const telefono = "2201332906";
     
     let msjWa = `*TICKET DE PEDIDO - GORROS QX076*\n`;
     msjWa += `-----------------------------------------------\n`;
