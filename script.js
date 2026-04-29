@@ -230,7 +230,7 @@ function procesarCompraWa() {
 // ==============================================
 
     // NÚMERO ACTUALIZADO
-    const telefono = "525519178328";
+    const telefono = "2201332906";
     
     let mensaje = "*TICKET DE PEDIDO - GORROS QX076*\n";
     mensaje += "-----------------------------------------------\n";
@@ -658,7 +658,7 @@ function cerrarModalBtn() {
 // --- LÓGICA DEL SLIDER "PERRÍSIMO" ---
 const beneficios = [
     // Nota: El botón de WhatsApp ahora incluye la clase 'magnetic' y el número correcto
-    { tag: "TU ESTILO", titulo: "Diseños 100% a tu medida", desc: "¿De tu artista favorito, para parejas o un logo especial? Cuéntanos tu idea, nosotros le ponemos la magia y creamos un diseño único que vas a amar.", tipo: "video", src: "personalizado.mp4", boton: `<a href="https://wa.me/525519178328?text=Hola!%20Me%20gustaría%20cotizar%20un%20diseño%20personalizado" target="_blank" class="btn-whatsapp-slider magnetic"><i class="fab fa-whatsapp"></i> ¡Cotiza tu idea aquí!</a>` },
+    { tag: "TU ESTILO", titulo: "Diseños 100% a tu medida", desc: "¿De tu artista favorito, para parejas o un logo especial? Cuéntanos tu idea, nosotros le ponemos la magia y creamos un diseño único que vas a amar.", tipo: "video", src: "personalizado.mp4", boton: `<a href="https://wa.me/2201332906?text=Hola!%20Me%20gustaría%20cotizar%20un%20diseño%20personalizado" target="_blank" class="btn-whatsapp-slider magnetic"><i class="fab fa-whatsapp"></i> ¡Cotiza tu idea aquí!</a>` },
     
     { tag: "ENVÍOS", titulo: "¡De nuestra tienda a tu hospital!", desc: "Envíos rápidos y seguros a todo México para que nunca te falte estilo en tu turno.", tipo: "video", src: "envios.mp4" },
     
