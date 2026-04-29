@@ -203,7 +203,7 @@ function procesarCompraWa() {
         return;
     }
 
-    const telefono = "525519178328";
+    const telefono = "2201332906";
     
     let mensaje = "*TICKET DE PEDIDO - GORROS QX076*\n";
     mensaje += "-----------------------------------------------\n";
